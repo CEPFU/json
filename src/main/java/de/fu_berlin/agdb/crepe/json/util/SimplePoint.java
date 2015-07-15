@@ -2,6 +2,7 @@ package de.fu_berlin.agdb.crepe.json.util;
 
 /**
  * Simple latitude/longitude point
+ *
  * @author Simon Kalt
  */
 public class SimplePoint {

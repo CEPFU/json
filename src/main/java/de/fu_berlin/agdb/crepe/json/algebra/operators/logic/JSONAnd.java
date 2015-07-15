@@ -9,6 +9,10 @@ import java.util.List;
 public class JSONAnd extends JSONOperator<And> {
     private List<JSONOperator<?>> ofOperands;
 
+    /**
+     * Used for JSON deserialization.
+     */
+    @SuppressWarnings("unused")
     public JSONAnd() {
 
     }
@@ -31,8 +35,7 @@ public class JSONAnd extends JSONOperator<And> {
 
             // Safe, since the loop above runs at least once!
             return (And) last;
-        }
-        else // TODO: When the underlying structure supports it, allow 0 or 1 operands
+        } else // TODO: When the underlying structure supports it, allow 0 or 1 operands
             return null;
     }
 

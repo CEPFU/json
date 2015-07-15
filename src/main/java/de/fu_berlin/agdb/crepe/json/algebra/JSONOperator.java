@@ -7,7 +7,7 @@ import de.fu_berlin.agdb.crepe.algebra.Operator;
 import de.fu_berlin.agdb.crepe.json.algebra.operators.JSONMatchToStation;
 import de.fu_berlin.agdb.crepe.json.algebra.operators.logic.JSONAnd;
 
-import static com.fasterxml.jackson.annotation.JsonSubTypes.*;
+import static com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@class")

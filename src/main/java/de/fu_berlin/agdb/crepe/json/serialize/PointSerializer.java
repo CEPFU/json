@@ -11,6 +11,7 @@ import java.io.IOException;
 /**
  * Class to serialize {@link com.vividsolutions.jts.geom.Point} objects to JSON.
  * Adapted from <a href="http://stackoverflow.com/questions/27624940/map-a-postgis-geometry-point-field-with-hibernate-on-spring-boot">Stackoverflow</a>.
+ *
  * @author Simon Kalt
  */
 public class PointSerializer extends JsonSerializer<Point> {
