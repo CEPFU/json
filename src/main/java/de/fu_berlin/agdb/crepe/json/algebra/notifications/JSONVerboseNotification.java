@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import de.fu_berlin.agdb.crepe.algebra.notifications.VerboseNotification;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"rule"})
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@class")
 public class JSONVerboseNotification extends JSONNotification<VerboseNotification> {
     private String message;

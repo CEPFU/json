@@ -1,4 +1,4 @@
-package de.fu_berlin.agdb.crepe.json.algebra.operators.test;
+package de.fu_berlin.agdb.crepe.json.algebra.operators;
 
 import de.fu_berlin.agdb.crepe.algebra.operators.MockOperator;
 import de.fu_berlin.agdb.crepe.json.algebra.JSONOperator;

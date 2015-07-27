@@ -6,7 +6,7 @@
 
     <groupId>de.fu-berlin.agdb</groupId>
     <artifactId>json</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.1</version>
     <description>Utility classes for JSON serialization and deserialization</description>
 
     <properties>
@@ -49,6 +49,11 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>de.fu-berlin.agdb</groupId>
+            <artifactId>algebra</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>2.6.0-rc2</version>
@@ -62,6 +67,12 @@
             <groupId>com.vividsolutions</groupId>
             <artifactId>jts</artifactId>
             <version>1.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.0.30-beta</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

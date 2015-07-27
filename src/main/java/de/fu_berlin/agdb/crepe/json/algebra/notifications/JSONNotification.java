@@ -10,7 +10,7 @@ import de.fu_berlin.agdb.crepe.json.algebra.JSONOperator;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@class")
 @JsonSubTypes({@JsonSubTypes.Type(JSONVerboseNotification.class)})
-public abstract class JSONNotification<T extends Notification> implements JSONAlgebraElement<T> {
+public abstract class JSONNotification<T extends Notification> extends JSONAlgebraElement<T> {
     protected JSONOperator<?> rule;
     // Let's ignore this for now
     // protected JSONAlgebra algebra;

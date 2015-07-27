@@ -8,16 +8,16 @@ import java.util.List;
 /**
  * @author Simon Kalt
  */
-public class JSONAnd extends JSONBinaryOp {
+public class JSONXor extends JSONBinaryOp {
     /**
      * Used for JSON deserialization.
      */
     @SuppressWarnings("unused")
-    public JSONAnd() {
+    public JSONXor() {
         this(null);
     }
 
-    public JSONAnd(List<JSONOperator<?>> ofOperands) {
-        super(BinaryOperatorType.AND, ofOperands);
+    public JSONXor(List<JSONOperator<?>> ofOperands) {
+        super(BinaryOperatorType.XOR, ofOperands);
     }
 }

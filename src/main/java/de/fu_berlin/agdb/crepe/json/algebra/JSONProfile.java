@@ -1,5 +1,6 @@
 package de.fu_berlin.agdb.crepe.json.algebra;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import de.fu_berlin.agdb.crepe.algebra.Operator;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@class", defaultImpl = JSONProfile.class)
-public class JSONProfile implements JSONAlgebraElement<Profile> {
+public class JSONProfile extends JSONAlgebraElement<Profile> {
     private JSONOperator<? extends Operator> rule;
     private List<JSONNotification<?>> notifications;
     // TODO: Add window?
@@ -27,6 +28,7 @@ public class JSONProfile implements JSONAlgebraElement<Profile> {
         return getProfile(new EndlessWindow());
     }
 
+    @JsonIgnore
     private Profile getProfile(IWindow window) {
         Notification[] notificationArray = notifications
                 .stream()

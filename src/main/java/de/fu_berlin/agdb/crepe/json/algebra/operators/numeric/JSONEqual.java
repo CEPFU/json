@@ -3,7 +3,6 @@ package de.fu_berlin.agdb.crepe.json.algebra.operators.numeric;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import de.fu_berlin.agdb.crepe.algebra.Match;
 import de.fu_berlin.agdb.crepe.algebra.operators.numeric.Equal;
 import de.fu_berlin.agdb.crepe.json.algebra.JSONMatch;
 import de.fu_berlin.agdb.crepe.json.algebra.JSONOperator;
@@ -14,7 +13,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@class")
 @JsonDeserialize(using = JSONEqualDeserializer.class)
-public class JSONEqual extends JSONMatch<Match> {
+public class JSONEqual extends JSONMatch<Equal> {
     private String attribute;
     private Object toObject;
     private List<JSONOperator<?>> ofOperands;
@@ -30,7 +29,7 @@ public class JSONEqual extends JSONMatch<Match> {
     }
 
     @Override
-    public Match getAlgebraElement() {
+    public Equal getAlgebraElement() {
         if (ofOperands != null && ofOperands.size() >= 2) {
             // TODO: When the underlying structure supports it, add all available operands
             return new Equal(
