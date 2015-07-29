@@ -50,7 +50,6 @@ public abstract class JSONComparisonOperation extends JSONOperator<ComparisonOpe
         }
     }
 
-    @JsonIgnore
     public ComparisonOperationType getOperation() {
         return operation;
     }

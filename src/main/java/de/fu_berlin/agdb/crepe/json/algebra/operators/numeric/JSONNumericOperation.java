@@ -1,6 +1,5 @@
 package de.fu_berlin.agdb.crepe.json.algebra.operators.numeric;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -71,7 +70,6 @@ public abstract class JSONNumericOperation extends JSONOperator<NumericOperation
             throw new NullPointerException("Insufficient operands: " + this);
     }
 
-    @JsonIgnore
     public NumericOperationType getOperation() {
         return operation;
     }

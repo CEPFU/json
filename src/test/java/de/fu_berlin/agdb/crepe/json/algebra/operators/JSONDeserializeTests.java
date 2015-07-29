@@ -1,10 +1,7 @@
 package de.fu_berlin.agdb.crepe.json.algebra.operators;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import de.fu_berlin.agdb.crepe.json.algebra.JSONAlgebraElement;
 import de.fu_berlin.agdb.crepe.json.algebra.notifications.JSONVerboseNotification;
-import de.fu_berlin.agdb.crepe.json.algebra.operators.JSONMatchToStation;
-import de.fu_berlin.agdb.crepe.json.algebra.operators.JSONMockOperator;
 import de.fu_berlin.agdb.crepe.json.algebra.operators.logic.JSONAnd;
 import de.fu_berlin.agdb.crepe.json.algebra.operators.logic.JSONNot;
 import de.fu_berlin.agdb.crepe.json.algebra.operators.logic.JSONOr;
@@ -21,7 +18,10 @@ import java.util.Collection;
 import static de.fu_berlin.agdb.crepe.json.algebra.TestUtil.OBJECT_MAPPER;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONAs;
 
 @RunWith(Parameterized.class)
 public class JSONDeserializeTests {
@@ -124,9 +124,11 @@ public class JSONDeserializeTests {
     @Test
     public void testSerialize() throws Exception {
         String serialized = OBJECT_MAPPER.writeValueAsString(expected);
-        JsonNode serializedTree = OBJECT_MAPPER.readTree(serialized);
-        JsonNode expectedTree = OBJECT_MAPPER.readTree(jsonValue);
 
-        assertEquals("Serialization of profile to JSON failed.", expectedTree, serializedTree);
+        assertThat("Serialization of value to JSON failed.",
+                serialized,
+                is(sameJSONAs(jsonValue)
+                .allowingExtraUnexpectedFields())
+        );
     }
 }
