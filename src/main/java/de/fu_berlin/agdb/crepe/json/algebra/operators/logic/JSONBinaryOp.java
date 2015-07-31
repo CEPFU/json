@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import de.fu_berlin.agdb.crepe.algebra.Operator;
 import de.fu_berlin.agdb.crepe.algebra.operators.logic.BinaryOp;
 import de.fu_berlin.agdb.crepe.algebra.operators.logic.BinaryOperatorType;
 import de.fu_berlin.agdb.crepe.json.algebra.JSONOperator;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import static com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -39,11 +41,13 @@ public abstract class JSONBinaryOp extends JSONOperator<BinaryOp> {
     @Override
     public BinaryOp getAlgebraElement() {
         if (ofOperands != null && type != null) {
+            List<Operator> operands = new ArrayList<>(ofOperands.size());
+            for (JSONOperator<?> operand : ofOperands) {
+                operands.add(operand.getAlgebraElement());
+            }
             return new BinaryOp(
                     type,
-                    ofOperands.stream()
-                            .map(JSONOperator::getAlgebraElement)
-                            .collect(Collectors.toList())
+                    operands
             );
         } else // FIXME: Throw exception?
             throw new NullPointerException("Insufficient operands: " + this);

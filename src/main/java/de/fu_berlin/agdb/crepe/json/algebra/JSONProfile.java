@@ -10,6 +10,7 @@ import de.fu_berlin.agdb.crepe.algebra.windows.EndlessWindow;
 import de.fu_berlin.agdb.crepe.algebra.windows.IWindow;
 import de.fu_berlin.agdb.crepe.json.algebra.notifications.JSONNotification;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,10 +31,19 @@ public class JSONProfile extends JSONAlgebraElement<Profile> {
 
     @JsonIgnore
     private Profile getProfile(IWindow window) {
+        // Currently gives us an error with errorprone
+        /*
         Notification[] notificationArray = notifications
                 .stream()
-                .map(JSONAlgebraElement::getAlgebraElement)
+                .map(JSONNotification::getAlgebraElement)
                 .toArray(Notification[]::new);
+                */
+        // This is ugly...
+        List<Notification> elements = new ArrayList<>(notifications.size());
+        for (JSONNotification not : notifications) {
+            elements.add((Notification) not.getAlgebraElement());
+        }
+        Notification[] notificationArray = elements.toArray(new Notification[elements.size()]);
 
         return new Profile(rule.getAlgebraElement(), window, notificationArray);
     }
