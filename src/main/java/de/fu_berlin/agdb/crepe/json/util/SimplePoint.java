@@ -9,6 +9,8 @@ public class SimplePoint {
     private double latitude;
     private double longitude;
 
+    public SimplePoint() {}
+
     public SimplePoint(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
