@@ -1,5 +1,9 @@
 package de.fu_berlin.agdb.crepe.json.util;
 
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.Point;
+
 /**
  * Simple latitude/longitude point
  *
@@ -30,5 +34,13 @@ public class SimplePoint {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public Point asGeometryPoint(GeometryFactory geometryFactory) {
+        return geometryFactory.createPoint(new Coordinate(longitude, latitude));
+    }
+
+    public Point asGeometryPoint() {
+        return asGeometryPoint(new GeometryFactory());
     }
 }
