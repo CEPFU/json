@@ -31,21 +31,30 @@ public class JSONProfile extends JSONAlgebraElement<Profile> {
 
     @JsonIgnore
     private Profile getProfile(IWindow window) {
+        Operator ruleAlgebraElement = rule.getAlgebraElement();
+
         // Currently gives us an error with errorprone
         /*
-        Notification[] notificationArray = notifications
+        Notification[] notificationArray1 = notifications
                 .stream()
                 .map(JSONNotification::getAlgebraElement)
+                .map((notification -> {
+                    notification.setRule(ruleAlgebraElement);
+                    return notification;
+                }))
                 .toArray(Notification[]::new);
                 */
+
         // This is ugly...
         List<Notification> elements = new ArrayList<>(notifications.size());
         for (JSONNotification not : notifications) {
-            elements.add((Notification) not.getAlgebraElement());
+            Notification notificationElement = (Notification) not.getAlgebraElement();
+            notificationElement.setRule(ruleAlgebraElement);
+            elements.add(notificationElement);
         }
         Notification[] notificationArray = elements.toArray(new Notification[elements.size()]);
 
-        return new Profile(rule.getAlgebraElement(), window, notificationArray);
+        return new Profile(ruleAlgebraElement, window, notificationArray);
     }
 
     public JSONOperator<? extends Operator> getRule() {
